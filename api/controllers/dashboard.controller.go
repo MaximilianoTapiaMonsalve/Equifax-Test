@@ -3,7 +3,6 @@ package controllers
 import (
 	"golang-interview/domain/services"
 	"net/http"
-	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -18,18 +17,23 @@ func New(service *services.DashboardService) *DashboardController {
 	}
 }
 
-func (dc *DashboardController) GetDashboard(c *gin.Context) {
-	id, err := strconv.Atoi(c.Param("id"))
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid id"})
+func (dc *DashboardController) GetDashboard(gctx *gin.Context) {
+	type pathParam struct {
+		ID int32 `uri:"id" binding:"required"`
+	}
+
+	var params pathParam
+
+	if err := gctx.ShouldBindUri(&params); err != nil {
+		gctx.JSON(http.StatusBadRequest, gin.H{"error": "invalid id"})
 		return
 	}
 
-	response, err := dc.dashboardService.GetDashboard(c.Request.Context(), int32(id))
+	response, err := dc.dashboardService.GetDashboard(gctx, params.ID)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		gctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	c.JSON(http.StatusOK, response)
+	gctx.JSON(http.StatusOK, response)
 }

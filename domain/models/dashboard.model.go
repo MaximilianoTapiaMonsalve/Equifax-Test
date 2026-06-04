@@ -1,31 +1,22 @@
 package models
 
-type UserResponse struct {
-	ID        int
+type User struct {
+	ID        int32
 	FirstName string
 	LastName  string
-	Age       int
+	Age       int32
 }
 
 type Todo struct {
-	ID        int
+	ID        int32
 	Todo      string
 	Completed bool
-	UserID    int
+	UserID    int32
 }
 
-type TodosResponse struct {
+type Todos struct {
 	Todos []Todo
 	Total int
 	Skip  int
 	Limit int
-}
-
-type DashboardResponse struct {
-	ID               int     `json:"id"`
-	FullName         string  `json:"full_name"`
-	Status           string  `json:"status"`
-	PendingTaskCount int     `json:"pending_task_count"`
-	NextUrgentTask   *string `json:"next_urgent_task"`
-	ErrorWarning     *string `json:"error_warning"`
 }
