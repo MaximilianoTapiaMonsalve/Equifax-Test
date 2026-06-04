@@ -44,7 +44,7 @@ func (s *DashboardService) GetDashboard(ctx context.Context, id int32) (*dtos.Da
 	}
 
 	status := "Rookie"
-	fmt.Println(user.Age)
+
 	if user.Age > 50 {
 		status = "Veteran"
 	}
