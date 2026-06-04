@@ -1,6 +1,6 @@
 # EQUIFAX TEST - DASHBOARD API
 
-This is a Backend service in a BFF style developed in Golang that currently fetches user data and todos from https://dummyjson.com, aggregates them and todoos exposes a single endpoint `GET /dashboard/:id`.
+This is a Backend service in a BFF style developed in Golang that currently fetches user data and todos from https://dummyjson.com, aggregates them and exposes a single endpoint `GET /dashboard/:id`.
 
 ## Install
 ```bash
