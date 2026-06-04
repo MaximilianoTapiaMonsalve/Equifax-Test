@@ -32,5 +32,5 @@ go test ./test/... -v
 ## Usage
 
 ```bash
-curl http://localhost:8080/dashboard/1
+curl http://localhost:3000/dashboard/1
 ```
